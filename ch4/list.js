@@ -19,12 +19,11 @@ function prepend(element, inputList) {
 
 // THIS FUNCTION ISNT DONE YET. PLEASE IGNORE IT.
 function nth(list, n, index) {
-  var i = index || 0;
-  var newList = list.rest;
-  if (n == i) {
-    return newList;
-  } else {
-    writeln("Skip! Index: " + i);
-    nth(newList, n, i+1);
-  }
+index = index || 0;
+if (index == n) {
+  return list;
+} else {
+  var newIndex = index+1;
+  nth(list.rest, n, newIndex);
+}
 }
