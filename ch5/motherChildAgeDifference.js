@@ -54,10 +54,10 @@ data.forEach(function(person) {
     var mother = data.filter(function(checkPerson){
       return checkPerson.name === person.mother;
     });
-    console.log(mother);
+    differences.push(mother.died-mother.born-(person.died-person.born));
   } else {
     console.log("Mother null!");
   }
 });
 
-average(differences);
+var averageDifference = average(differences);
