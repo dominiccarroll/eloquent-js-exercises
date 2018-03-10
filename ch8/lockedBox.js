@@ -30,7 +30,6 @@ var box = {
         }
     }
   }
-  
 // provided code
 
   withBoxUnlocked(function() {
