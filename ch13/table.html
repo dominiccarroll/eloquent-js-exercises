@@ -1,0 +1,57 @@
+<!doctype html>
+<script src="mountains.js"></script>
+<script src="13_dom.js"></script>
+
+<style>
+  /* Defines a cleaner look for tables */
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+</style>
+
+<div id="table"></div>
+
+<script>
+  // EXERCISE STARTS HERE. kind of messy, but got it done.
+
+  function buildTable(data) {
+
+    var domBody = document.getElementsByTagName("body")[0];
+    console.log("received data: " + data);
+
+    var table = document.createElement("table");
+    var tBody = document.createElement("tbody");
+    table.appendChild(tBody);
+    document.getElementById("table").appendChild(table);
+    var headingRow = document.createElement("tr");
+    tBody.appendChild(headingRow);
+    console.log("created header row");
+
+    var properties = Object.keys(data[0]); // create header row
+    properties.forEach(function(e) {
+      var cell = document.createElement("th");
+      tBody.appendChild(cell);
+      var cellText = document.createTextNode(e.toUpperCase());
+      cell.appendChild(cellText);
+    });
+
+    data.forEach(function(rowData) {
+      var newRow = document.createElement("tr");
+      tBody.appendChild(newRow);
+      Object.keys(rowData).forEach(function(key, index) { // build the rest of the rows
+      if (properties.includes(key)) { // make sure we dont add an extra 'column' cell
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode(rowData[key]);
+      cell.appendChild(cellText);
+      if (typeof(rowData[key]) == "number") { // align 'number' cells
+        cell.style.textAlign = "right";
+      }
+      newRow.appendChild(cell);
+      }
+    });
+    });
+
+  }
+  // EXERCISE ENDS HERE
+buildTable(MOUNTAINS);
+</script>
