@@ -1,0 +1,27 @@
+<!doctype html>
+
+<input type="text">
+<script>
+  var field = document.querySelector("input");
+  // exercise starts
+  var bannedLetters = ['q','x','w'];
+
+    function keyPress() {
+        console.log("keypress event");
+        var str = field.value.toLowerCase();
+        bannedLetters.forEach(function(e) {
+            str = str.split(e).join("");
+        });
+        field.value = str;
+    }
+
+    field.addEventListener("focus", function(event) {
+        console.log("Field focused.");
+        addEventListener("keypress", keyPress);
+    });
+
+    field.addEventListener("blur", function() {
+        keyPress();
+        removeEventListener("keypress", keyPress);
+    });
+</script>

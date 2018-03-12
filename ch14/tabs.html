@@ -1,0 +1,40 @@
+<!doctype html>
+
+<div id="wrapper">
+  <div data-tabname="one">Tab one <img src="https://ei.marketwatch.com/Multimedia/2016/06/06/Photos/MG/MW-EO507_shkrel_20160606174055_MG.jpg?uuid=59565cec-2c2f-11e6-9347-0015c588dfa6"></div>
+  <div data-tabname="two">Tab two <img src="https://www.biography.com/.image/t_share/MTQ3NTI2OTA4NzY5MjE2MTI4/drake_photo_by_prince_williams_wireimage_getty_479503454.jpg"></div>
+  <div data-tabname="three">Tab three <img src="https://sslg.ulximg.com/image/405x405/artist/1392767353_217f16228baaa5dc18c82925ac76edf6.jpg/9e89e114db44f266e044addd06e88d69/1392767353_kanye_west_wall_40.jpg"></div>
+</div>
+<script>
+  function asTabs(node) {
+    // exercise starts here
+    for (var i = 0; i < node.children.length; i++) {
+        (function() {var child = node.children[i]; // we need to make this a seperate scope due to it being a for loop. poor design choices. 
+        child.style.display = "none";
+        var btn = document.createElement("button");
+        btn.className = "tab";
+        btn.innerHTML = child.getAttribute("data-tabname");
+        node.parentNode.insertBefore(btn, node);
+        btn.addEventListener("click", function(event) {
+
+            // For some reason I was getting a bug. Thats why I did for loops. Now I have 2 for loops. This is a stupid design, I KNOW!
+            for (var i2 = 0; i2 < node.children.length; i2++) {
+                var c2 = node.children[i2];
+                c2.style.display = "none";
+            }
+            child.style.display = "inline";
+
+            // now we will style the buttons
+            var buttons = document.getElementsByClassName("tab");
+            for (var b = 0; b < buttons.length; b++) {
+                var button = buttons[b];
+                button.style.backgroundColor = "white";
+            }
+            btn.style.backgroundColor = "lightblue";
+
+        });
+    })();
+    }
+  }
+  asTabs(document.querySelector("#wrapper"));
+</script>

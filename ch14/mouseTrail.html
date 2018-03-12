@@ -1,0 +1,31 @@
+<!doctype html>
+
+<style>
+  .trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: teal;
+  }
+  body {
+    height: 300px;
+  }
+</style>
+
+<div id="container"></div>
+
+<script>
+  // exercise starts here
+  var container = document.getElementById("container");
+
+addEventListener("mousemove", function(event) {
+    var divObject = document.createElement("div");
+    divObject.setAttribute("class", "trail");
+    divObject.style.top = event.pageY + "px";
+    divObject.style.left = event.pageX + "px";
+    container.appendChild(divObject);
+    setTimeout(function() {
+        divObject.remove();
+    }, 100);
+});
+</script>
