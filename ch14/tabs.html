@@ -9,7 +9,8 @@
   function asTabs(node) {
     // exercise starts here
     for (var i = 0; i < node.children.length; i++) {
-        (function() {var child = node.children[i]; // we need to make this a seperate scope due to it being a for loop. poor design choices. 
+        (function() {
+        var child = node.children[i]; // we need to make this a seperate scope due to it being a for loop. poor design choices. 
         child.style.display = "none";
         var btn = document.createElement("button");
         btn.className = "tab";
