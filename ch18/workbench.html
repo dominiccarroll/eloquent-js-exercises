@@ -1,0 +1,21 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <textarea id="code">return "hi";</textarea>
+        <button id="button">Run</button>
+        <pre id="output"></pre>
+
+        <script>
+            var btn = document.getElementById("button");
+            btn.onclick = function() {
+                var output = document.getElementById("output");
+                var code = document.getElementById("code");
+                var f = new Function(code.value);
+                output.innerHTML = f();
+                console.log(f());
+            }
+        </script>
+    </body>
+</html>

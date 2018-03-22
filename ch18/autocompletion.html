@@ -1,0 +1,24 @@
+<html>
+    <head></head>
+    <body>
+    <input type="text" id="field">
+    <div id="suggestions" style="cursor: pointer"></div>
+
+        <script>
+            // Builds up an array with global variable names, like
+            // 'alert', 'document', and 'scrollTo'
+            var terms = [];
+            for (var name in window)
+                terms.push(name);
+
+            // My code here.
+            var field = document.getElementById("field");
+            var suggestions = document.getElementById("suggestions");
+            
+            field.addEventListener("input", function(e) {
+
+            });
+        </script>
+
+    </body>
+</html>
