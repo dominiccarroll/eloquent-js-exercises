@@ -2,7 +2,7 @@
     <head></head>
     <body>
     <input type="text" id="field">
-    <div id="suggestions" style="cursor: pointer"></div>
+    <div id="suggestionsDiv" style="cursor: pointer"><ul id="suggestions"></ul></div>
 
         <script>
             // Builds up an array with global variable names, like
@@ -16,7 +16,27 @@
             var suggestions = document.getElementById("suggestions");
             
             field.addEventListener("input", function(e) {
+                // clear the suggestions list before we do anything
+                suggestions.innerHTML = '';
+                // begin search for autocomplete predictions
+                var currentText = field.value;
+                // search the terms
+                var suggestedTerms = [];
+                terms.forEach(function(term) { // AUTOCOMPLETE STRING VALIDATION FUNCTION?
+                    var spot = term.search(currentText);
+                    if (spot === 0) {
+                        suggestedTerms.push(term);
+                    }
+                });
 
+                suggestedTerms.forEach(function(e) {
+                    var p = document.createElement("p");
+                    p.innerHTML = e;
+                    p.addEventListener("click", function(){
+                        field.value = e;
+                    });
+                    suggestions.appendChild(p);
+                });
             });
         </script>
 
